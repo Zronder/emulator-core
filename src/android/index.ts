@@ -1,5 +1,6 @@
 import path from 'path'
-import { emulatorPath, runCmd, ANDROID, ANDROID_COMMANDS, androidExtraBootArgs } from '../utils'
+import { emulatorPath, runCmd, androidExtraBootArgs, showErrorMessage } from '../utils'
+import { ANDROID, ANDROID_COMMANDS } from './constants'
 
 const getAndroidPath = async () => {
     return (await runCmd(`echo "${emulatorPath()}"`)).trim().replace(/[\n\r"]/g, '')
@@ -25,15 +26,15 @@ export const getAndroidEmulators = async () => {
         if (res) {
             return res.trim().split('\n')
         }
-        // showErrorMessage(
-        //     'There are no Android emulators found, please check if you have any emulators installed.',
-        // )
+        showErrorMessage(
+            'There are no Android emulators found, please check if you have any emulators installed.',
+        )
         return false
-    } catch (e) {
-        // showErrorMessage(e.toString())
-        // showErrorMessage(
-        //     `Something went wrong fetching you Android emulators! Make sure your path is correct. Try running this command in your terminal: ${command}`,
-        // )
+    } catch (e: any) {
+        showErrorMessage(e.toString())
+        showErrorMessage(
+            `Something went wrong fetching you Android emulators! Make sure your path is correct. Try running this command in your terminal: ${command}`,
+        )
         return false
     }
 }
@@ -50,11 +51,11 @@ export const runAndroidEmulator = async (emulator: string, cold?: boolean) => {
             cwd: androidPath.replace('~', process.env.HOME || ''),
         })
         return res || false
-    } catch (e) {
-        // showErrorMessage(e.toString())
-        // showErrorMessage(
-        //     `Something went wrong running you Android emulator! Try running this command in your terminal: ${command}`,
-        // )
+    } catch (e: any) {
+        showErrorMessage(e.toString())
+        showErrorMessage(
+            `Something went wrong running you Android emulator! Try running this command in your terminal: ${command}`,
+        )
         return false
     }
 }

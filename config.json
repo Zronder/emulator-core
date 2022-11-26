@@ -1,0 +1,44 @@
+{
+    "emulator": {
+        "simulatorPath": {
+            "type": "string",
+            "default": "",
+            "description": "The absolute path of your Xcode simulator directory containing the Simulator.app script. Leaving it empty will automatically select the path with xcode-select -p."
+        },
+        "emulatorPath": {
+            "type": "string",
+            "default": "~/Library/Android/sdk/emulator",
+            "description": "The absolute path of your Android emulator directory containing the emulator script."
+        },
+        "emulatorPathMac": {
+            "type": "string",
+            "default": "",
+            "description": "The absolute path of the Android emulator directory on your Macbook containing the emulator script."
+        },
+        "emulatorPathLinux": {
+            "type": "string",
+            "default": "",
+            "description": "The absolute path of the Android emulator directory on your Linux containing the emulator script."
+        },
+        "emulatorPathWindows": {
+            "type": "string",
+            "default": "",
+            "description": "The absolute path of the Android emulator directory on your Windows containing the emulator script."
+        },
+        "androidColdBoot": {
+            "type": "boolean",
+            "default": false,
+            "description": "Show an option to cold boot android devices."
+        },
+        "androidExtraBootArgs": {
+            "type": "string",
+            "default": "",
+            "description": "Add extra boot args to the android emulator."
+        },
+        "hasEditorTitleIcon": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show the emulator icon in the editor bar on the top right."
+        }
+    }
+}

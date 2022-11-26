@@ -6,6 +6,7 @@
         "build": "tsc",
         "prod": "tsc && node dist/index.js",
         "dev": "ts-node src/index.ts",
+        "demo": "ts-node demo/index.ts",
         "lint": "eslint **/src/** --ext .js,.ts,.jsx,tsx"
     },
     "lint-staged": {

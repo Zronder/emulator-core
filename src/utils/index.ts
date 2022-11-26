@@ -1,5 +1,9 @@
 import { exec } from 'child_process'
+import { getConfig } from './config'
+import { showErrorMessage } from './message'
 export * from './constants'
+export * from './message'
+export * from './config'
 
 export const runCmd = (cmd: string, options?: any): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -14,21 +18,26 @@ export const runCmd = (cmd: string, options?: any): Promise<string> => {
 
 export const emulatorPath = () => {
     const path = getPath()
-
-    // if (process.platform.startsWith('win') && path.includes('/')) {
-    //     showErrorMessage(
-    //         'Make sure your Windows path is set correctly! Example: C:\\Users\\Me\\AppData\\Local\\Android\\Sdk\\emulator',
-    //     )
-    //     return false
-    // }
-
+    if (process.platform.startsWith('win') && path.includes('/')) {
+        showErrorMessage(
+            'Make sure your Windows path is set correctly! Example: C:\\Users\\Me\\AppData\\Local\\Android\\Sdk\\emulator',
+        )
+        return false
+    }
     return path
 }
 
+export const simulatorPath = () => {
+    const config = getConfig()
+    return config['simulatorPath']
+}
+
 const getPath = () => {
-    const pathMac = ''
-    const pathLinux = ''
-    const pathWindows = ''
+    const config = getConfig()
+    const pathMac = config['emulatorPathMac']
+    const pathLinux = config['emulatorPathLinux']
+    const pathWindows = config['emulatorPathWindows']
+    const emulatorPath = config['emulatorPath']
 
     if (process.platform === 'darwin' && pathMac) {
         return pathMac
@@ -39,9 +48,10 @@ const getPath = () => {
     if (process.platform.startsWith('win') && pathWindows) {
         return pathWindows
     }
-    return '~/Library/Android/sdk/emulator'
+    return emulatorPath
 }
 
 export const androidExtraBootArgs = () => {
-    return ''
+    const config = getConfig()
+    return config['androidExtraBootArgs']
 }
