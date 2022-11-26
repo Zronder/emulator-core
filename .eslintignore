@@ -1,0 +1,3 @@
+**/dist/*
+**/*.scss
+packages/*/index.js

@@ -1,0 +1,43 @@
+{
+    "version": "1.0.0",
+    "name": "zdor-template",
+    "scripts": {
+        "prepare": "husky install",
+        "build": "tsc",
+        "prod": "tsc && node dist/index.js",
+        "dev": "ts-node src/index.ts",
+        "lint": "eslint **/src/** --ext .js,.ts,.jsx,tsx"
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": "eslint --fix"
+    },
+    "repository": "https://github.com/Zronder/zdor-node-template.git",
+    "author": "Zder <ypf0088@gmail.com>",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {
+        "@babel/eslint-parser": "^7.16.5",
+        "@commitlint/cli": "^16.0.1",
+        "@commitlint/config-conventional": "^16.0.0",
+        "@types/jest": "^26.0.24",
+        "@types/node": "^18.11.0",
+        "@typescript-eslint/eslint-plugin": "^5.9.0",
+        "@typescript-eslint/parser": "^5.9.0",
+        "chalk": "^4.1.1",
+        "eslint": "^8.6.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-promise": "^5.2.0",
+        "execa": "^5.1.1",
+        "husky": "^7.0.4",
+        "jest": "^27.0.6",
+        "lint-staged": "^12.1.1",
+        "prettier": "2.5.1",
+        "ts-jest": "^27.0.3",
+        "ts-node": "^10.9.1",
+        "tslib": "^2.4.1",
+        "typescript": "^4.3.5"
+    }
+}
